@@ -20,6 +20,7 @@ import json
 import os
 import platform
 import urllib.request
+import warnings
 import zipfile
 
 import joblib
@@ -43,6 +44,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+
+# sklearn 1.5.x passes a deprecated 'iprint' option to newer scipy lbfgs -> noisy, harmless
+warnings.filterwarnings("ignore", message="Unknown solver options: iprint")
+os.environ.setdefault("PYTHONWARNINGS", "ignore:Unknown solver options")  # joblib workers
 
 SEED = 42
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

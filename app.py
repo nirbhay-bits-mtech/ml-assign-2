@@ -147,7 +147,7 @@ c1.metric("Rows", len(data))
 c2.metric("Features used", len(feature_cols))
 c3.metric("Target present", "Yes" if has_target else "No")
 with st.expander("Preview uploaded data"):
-    st.dataframe(data.head(20), use_container_width=True)
+    st.dataframe(data.head(20), width="stretch")
 
 model = models[model_name]
 y_pred = model.predict(X)
@@ -185,7 +185,7 @@ with tab_eval:
                 y_true, y_pred, labels=list(range(len(classes))),
                 target_names=classes, output_dict=True, zero_division=0,
             )
-            st.dataframe(pd.DataFrame(report).T.round(3), use_container_width=True)
+            st.dataframe(pd.DataFrame(report).T.round(3), width="stretch")
 
 # --- compare all five models on the same uploaded data
 with tab_compare:
@@ -199,7 +199,7 @@ with tab_compare:
         comp = pd.DataFrame(table).T
         st.dataframe(
             comp.style.format("{:.4f}").highlight_max(axis=0, color="#c8e6c9"),
-            use_container_width=True,
+            width="stretch",
         )
         metric_pick = st.radio("Plot metric", list(comp.columns), horizontal=True, index=4)
         fig, ax = plt.subplots(figsize=(8, 3.2))
@@ -216,7 +216,7 @@ with tab_pred:
     out["Predicted"] = encoder.inverse_transform(y_pred)
     out["Confidence"] = y_prob.max(axis=1).round(3)
     st.dataframe(out[[*([target_col] if has_target else []), "Predicted", "Confidence"]].head(200),
-                 use_container_width=True)
+                 width="stretch")
     st.download_button("⬇️ Download predictions", out.to_csv(index=False).encode(),
                        file_name=f"predictions_{model_name.replace(' ', '_').lower()}.csv")
 
