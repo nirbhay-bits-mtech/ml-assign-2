@@ -3,7 +3,7 @@
 **M.Tech AIML (BITS Pilani WILP) · Machine Learning · Assignment 2**
 Author: Nirbhay Jha
 
-🔗 **Live app:** _<STREAMLIT_APP_URL>_
+🔗 **Live app:** https://ml-assign-2-xwmlpg3hh6g7oshyeehrg2.streamlit.app/
 🔗 **GitHub repo:** https://github.com/nirbhay-bits-mtech/ml-assign-2
 
 ---
